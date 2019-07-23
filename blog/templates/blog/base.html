@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet" type="text/css">
-    <title>Meu blog maneiro!</title>
-</head>
-<body>
-    <div class="page-header">
-        <h1><a href="/">Blog Django Girls</a></h1>
-    </div>
-
-        {% for post in posts %}
-            <div class="content container">
-                <div class="row">
-                    <div class="col-md-8">
-                        {% block content %}
-                        {% endblock %}
-                    </div>
+    <head>
+        <meta charset="UTF-8">
+        <title>Meu blog maneiro!</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+            {% if user.is_authenticated %}
+                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            {% endif %}
+            <h1><a href="/">Blog Django Girls</a></h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
                 </div>
             </div>
-        {% endfor %}
-</body>
+        </div>
+    </body>
 </html>
